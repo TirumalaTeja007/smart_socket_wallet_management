@@ -7,7 +7,6 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 public class AvocadoApplication {
-
 	public static void main(String[] args) {
 		SpringApplication.run(AvocadoApplication.class, args);
 	}
@@ -16,5 +15,4 @@ public class AvocadoApplication {
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
-
 }

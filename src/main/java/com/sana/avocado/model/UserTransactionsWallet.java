@@ -13,7 +13,7 @@ import com.sana.avocado.enums.TransactionTypeEnum;
 @Entity(name="USER_TRANSACTIONS_WALLET")
 public class UserTransactionsWallet extends VersionableEntity {
 
-	/**
+	/*
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -30,6 +30,7 @@ public class UserTransactionsWallet extends VersionableEntity {
 	private double transactionAmount;
 	private String walletTransactionId;
 	private String orderId;
+	private String sessionId;
 	public Integer getId() {
 		return id;
 	} 
@@ -78,8 +79,9 @@ public class UserTransactionsWallet extends VersionableEntity {
 	public String toString() {
 		return "UserTransactionsWallet [id=" + id + ", userName=" + userName + ", walletAmount=" + walletAmount
 				+ ", transactionType=" + transactionType + ", transactionStatus=" + transactionStatus
-				+ ", transactionAmount=" + transactionAmount + ", walletTransactionId=" + walletTransactionId + ", orderId="
-				+ orderId + "]";
+				+ ", onHoldAmount=" + onHoldAmount + ", transactionAmount=" + transactionAmount
+				+ ", walletTransactionId=" + walletTransactionId + ", orderId=" + orderId + ", sessionId=" + sessionId
+				+ "]";
 	}
 	public String getOrderId() {
 		return orderId;
@@ -92,5 +94,11 @@ public class UserTransactionsWallet extends VersionableEntity {
 	}
 	public void setWalletTransactionId(String walletTransactionId) {
 		this.walletTransactionId = walletTransactionId;
+	}
+	public String getSessionId() {
+		return sessionId;
+	}
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
 	}
 }

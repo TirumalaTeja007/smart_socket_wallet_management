@@ -1,6 +1,7 @@
 package com.sana.avocado.service;
 
 import java.net.URISyntaxException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,5 +30,17 @@ public interface IUserTransactionsWalletService {
 			TransactionStatusEnum transactionStatus);
 
 	Optional<List<UserTransactionsWallet>> getUserByOrderId(String userName, String orderId); 
+	
+	Optional<UserTransactionsWallet> getUserBySessionId(String userName, String sessionId);
+
+	Optional<List<UserTransactionsWallet>> getAllWalletsDates(String userName, Date startDate, Date endDate);
+
+	Optional<List<UserTransactionsWallet>> getUserByWalletTransactionId(String userName, String walletTransactionId);
+
+	Optional<List<UserTransactionsWallet>> getUserByTransactionTypeAndDates(String userName,
+			TransactionTypeEnum transactionType, Date startDate, Date endDate);
+
+	Optional<List<UserTransactionsWallet>> getUserByTransactionStatusAndDates(String userName,
+			TransactionStatusEnum transactionStatus, Date startDate, Date endDate);
 }
- 
+     

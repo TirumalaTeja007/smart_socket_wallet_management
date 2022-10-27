@@ -1,7 +1,10 @@
 package com.sana.avocado.controller;
 
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,8 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sana.avocado.dto.ApiResponse;
 import com.sana.avocado.exception.ResourceNotFoundException;
+import com.sana.avocado.exception.ResourceRegistrationException;
 import com.sana.avocado.model.UserWallet;
 import com.sana.avocado.service.IUserWalletService;
+import com.sana.avocado.model.User;
 
 
 @RestController
@@ -33,7 +38,7 @@ public class UserWalletController {
 	
 	
 	@GetMapping("/userWalletAmount")
-	public ResponseEntity<?> getUserWallet(@RequestHeader(value="", required=false) String password){
+	public ResponseEntity<?> getUserWallet(){
 		logger.info("UserWalletController.getUserWallet() details ::");
 		
 		Optional<List<UserWallet>> userWalletList = userWalletService.getUserWallet();
@@ -49,15 +54,14 @@ public class UserWalletController {
 		
 	}
 	
-	
+	 
 	@GetMapping(value = "/userWalletAmount/{userName}")
-	public ResponseEntity<?> getUserNameWallet(@PathVariable("userName") String userName) {
-		
-			 return userWalletService.getUserByUserName(userName).map(user -> {
-		            logger.info("getUser returned [API[: " + user);
-		            return ResponseEntity.ok(user);
+	public ResponseEntity<?> getUserNameWallet(@PathVariable @Valid String userName) throws URISyntaxException {
+	    return userWalletService.getUserByUserName(userName).map(newUser -> {
+		            logger.info("getUser returned [API[: " + newUser);
+		            return ResponseEntity.ok(newUser);
 		        }).orElseThrow(() -> new ResourceNotFoundException("User", userName, userName));
+		
 	}
-	
-
+ 
 }
